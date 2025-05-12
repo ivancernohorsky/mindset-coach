@@ -28,7 +28,7 @@ if prompt := st.chat_input("Zeptej se na cokoliv z kurzu..."):
     with st.chat_message("assistant"):
         try:
             response = openai.chat.completions.create(
-                model="gpt-4",
+                model="gpt-3.5-turbo",
                 messages=st.session_state.messages
             )
             reply = response.choices[0].message.content
