@@ -40,13 +40,21 @@ model_choice = st.selectbox(
 )
 
 # Inicializace konverzace
+# Systémová zpráva se použije jen interně (neukáže se uživateli)
+system_prompt = {
+    "role": "system",
+    "content": f"Jsi digitální kouč Mindset Coach. Pomáháš studentům s tématem: {kurz_content[selected_topic]['label']}. Kontext: {kurz_content[selected_topic]['context']}"
+}
+
+# Zobrazí se jen přátelský úvod
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
-            "role": "system",
-            "content": f"Jsi digitální kouč Mindset Coach. Pomáháš studentům s tématem: {kurz_content[selected_topic]['label']}. Kontext: {kurz_content[selected_topic]['context']}"
+            "role": "assistant",
+            "content": "Ahoj, já jsem Mindset Coach, odborný AI asistent pro účastníky Online kurzu koučinku Mindset Coaching®\n\nNapiš mi, ve které části kurzu se právě nacházíš, nebo s čím ti mohu pomoci?"
         }
     ]
+
 
 # Zobrazení historie konverzace
 for msg in st.session_state.messages:
